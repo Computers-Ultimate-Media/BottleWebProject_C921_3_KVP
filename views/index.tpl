@@ -1,38 +1,34 @@
 % rebase('layout.tpl', title=title, menu=menu, year=year)
-
 <!-- Заголовок сайта -->
 <div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">GraphApp</h1>
-    <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua.</p>
-    </div>
+   <h1 class="display-5 fw-bold">GraphApp</h1>
+   <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Создание и визуализация графа в два клика или по матрице смежности: поиск Гамильтонова цикла, Алгоритм Дейкстры, Алгоритм Флойда.
+      </p>
+   </div>
 </div>
-
 <!-- Колонки с текстом -->
 <div class="row">
-    <div class="col-md-4">
-        <h2>One</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.</p>
-    </div>
-    <div class="col-md-4">
-        <h2>Two</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.</p>
-    </div>
-    <div class="col-md-4">
-        <h2>Three</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.</p>
-    </div>
+   <div class="col-md-4">
+      <h2>Гамильтонов цикл</h2>
+      <p>Гамильтонов граф — граф, содержащий гамильтонов цикл. При этом гамильтоновым циклом является такой цикл (замкнутый путь), который проходит через каждую вершину данного графа ровно по одному разу; то есть простой цикл, в который входят все вершины графа</p>
+      <form action="/hamilton">
+         <input type="submit" class="btn btn-info" value="Найти цикл" />
+      </form>
+   </div>
+   <div class="col-md-4">
+      <h2>Алгоритм Дейкстры</h2>
+      <p>Алгоритм Дейкстры (англ. Dijkstra’s algorithm) — алгоритм на графах, изобретённый нидерландским учёным Эдсгером Дейкстрой в 1959 году. Находит кратчайшие пути от одной из вершин графа до всех остальных. Алгоритм работает только для графов без рёбер отрицательного веса. Алгоритм широко применяется в программировании и технологиях данного мира, например, его используют протоколы маршрутизации OSPF и IS-IS</p>
+      <form action="/dijkstra">
+         <input type="submit" class="btn btn-info" value="Найти путь" />
+      </form>
+   </div>
+   <div class="col-md-4">
+      <h2>Алгоритм Флойда</h2>
+      <p>Алгоритм Флойда (алгоритм Флойда–Уоршелла) — алгоритм нахождения длин кратчайших путей между всеми парами вершин во взвешенном ориентированном графе. Работает корректно, если в графе нет циклов отрицательной величины, а в случае, когда такой цикл есть, позволяет найти хотя бы один такой цикл</p>
+      <form action="/floyd">
+         <input type="submit" class="btn btn-info" value="Найти путь" />
+      </form>
+   </div>
 </div>
+
