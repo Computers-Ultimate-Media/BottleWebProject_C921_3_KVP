@@ -1,3 +1,5 @@
+let matrixSize = 3;
+
 function isNumberKey(event) {
     const charCode = (event.which) ? event.which : event.keyCode;
     return !(charCode > 31 && (charCode < 48 || charCode > 57));
@@ -6,6 +8,8 @@ function isNumberKey(event) {
 function draw_matrix(size) {
     let body = $("#matrix").find('tbody');
     body.empty();
+
+    matrixSize = size;
 
     for (let i = 0; i < size; ++i) {
         let tr = body.append($('<tr>'));
@@ -23,10 +27,10 @@ function draw_matrix(size) {
     }
 }
 
-draw_matrix(3);
+draw_matrix(matrixSize);
 
 $("#button-update").click(function () {
-    let size = $("#input-size").val();
+    let size = Number.parseInt($("#input-size").val());
     if (size < 3) {
         toastr.warning('Слишком маленький размер матрицы')
         return;
