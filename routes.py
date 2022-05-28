@@ -41,13 +41,18 @@ def menu(idx=None):
     return options
 
 
-def base_page(extra: dict, scripts: list = None):
+def base_page(extra: dict, styles: list = None, scripts: list = None):
     base_scripts = ['static/js/main.js']
     if scripts is not None:
         for script in scripts:
             base_scripts.append(script)
+    base_styles = []
+    if styles is not None:
+        for style in styles:
+            base_styles.append(style)
     return {**dict(
         year=datetime.now().year,
+        styles=base_styles,
         scripts=base_scripts,
     ), **extra}
 
@@ -59,7 +64,7 @@ def index():
         title='Главная',
         menu=menu(0),
     ))
-    # , scripts=['static/js/main1.js']
+    # styles=['/static/css/alg.css'], scripts=['/static/js/main1.js']
 
 
 @route('/hamilton')
@@ -77,7 +82,7 @@ def dijkstra():
     return base_page(dict(
         title='Алгоритм Дейкстры',
         menu=menu(2),
-    ), scripts=['static/js/matrix.js'])
+    ), styles=['/static/css/matrix.css'], scripts=['/static/js/matrix.js'])
 
 
 @route('/floyd')
