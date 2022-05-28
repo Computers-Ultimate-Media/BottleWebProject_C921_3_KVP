@@ -89,10 +89,59 @@ def floyd():
     ))
 
 
+class Developer:
+    name: str
+    description: str
+    image_link: str
+    caption_1: str
+    caption_2: str
+    caption_3: str
+    github_link: str
+
+    def __init__(self, name: str, description: str, image_link: str, caption_1: str, caption_2: str, caption_3: str,
+                 github_link: str):
+        self.name = name
+        self.description = description
+        self.image_link = image_link
+        self.caption_1 = caption_1
+        self.caption_2 = caption_2
+        self.caption_3 = caption_3
+        self.github_link = github_link
+
+
 @route('/about')
 @view('about')
 def about():
     return base_page(dict(
         title='Авторы',
         menu=menu(4),
+        developers=[
+            Developer(
+                'Кулаков Роман',
+                'Такой себе разработчик',
+                'https://avatars.githubusercontent.com/u/68752471?v=4',
+                'Джавист',
+                'Напитонил',
+                'хочет спать',
+                'https://github.com/qwonix',
+            ),
+            Developer(
+                'Волков Александр',
+                'Разработка алгоритма Дейкстры',
+                'https://avatars.githubusercontent.com/u/98341994?v=4',
+                'Его вкусы весьма специфичны',
+                'Умеет писать код',
+                'Разработчик со стажем',
+                'https://github.com/buff3r0verfl0w',
+            ),
+            Developer(
+                'Прокопенко Артем',
+                'Разработка алгоритма Флойда',
+                'https://avatars.githubusercontent.com/u/60646160?v=4',
+                'Предпочитает языки пониже',
+                'Хорошо общается с детьми',
+                'Основатель Computers-Ultimate-Media',
+                'https://github.com/Gauliux',
+            )
+        ],
     ))
