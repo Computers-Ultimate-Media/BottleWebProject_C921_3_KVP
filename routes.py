@@ -42,7 +42,7 @@ def menu(idx=None):
 
 
 def base_page(extra: dict, styles: list = None, scripts: list = None):
-    base_scripts = ['static/js/main.js']
+    base_scripts = ['/static/js/main.js']
     if scripts is not None:
         for script in scripts:
             base_scripts.append(script)
