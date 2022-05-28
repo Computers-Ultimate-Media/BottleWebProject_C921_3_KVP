@@ -77,7 +77,7 @@ def dijkstra():
     return base_page(dict(
         title='Алгоритм Дейкстры',
         menu=menu(2),
-    ))
+    ), scripts=['static/js/matrix.js'])
 
 
 @route('/floyd')
