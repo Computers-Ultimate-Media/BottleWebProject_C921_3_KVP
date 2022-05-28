@@ -36,7 +36,7 @@
         GraphApp Team &copy; {{ year }}<br>
         <i class="bi-github" role="img"></i>
         <a style="margin: 2px; text-decoration: none"
-           href="https://github.com/buff3r0verfl0w/BottleWebProject_C921_3_KVP">
+           href="https://github.com/Computers-Ultimate-Media/BottleWebProject_C921_3_KVP">
             Source code
         </a>
     </footer>
