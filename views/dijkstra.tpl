@@ -29,4 +29,30 @@
             <button type="submit" class="btn btn-primary">Найти расстояния</button>
         </fieldset>
     </form>
+
+    <div id="result-table">
+        <label class="form-label mt-4">Расстояния от начальной вершины до других</label>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Индекс вершины</th>
+                <th scope="col">Расстояние до вершины</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Default</th>
+                <td>Column content</td>
+            </tr>
+            <tr>
+                <th scope="row">Default</th>
+                <td>Column content</td>
+            </tr>
+            <tr>
+                <th scope="row">Default</th>
+                <td>Column content</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
