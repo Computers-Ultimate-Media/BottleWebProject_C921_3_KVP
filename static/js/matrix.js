@@ -89,7 +89,23 @@ function onSubmitMatrix() {
     }
 
     if (error === '') {
-        console.log(Number.parseInt(selectedOption), JSON.stringify(matrix));
+        let input = {
+            'matrix': matrix,
+            'vertex': Number.parseInt(selectedOption),
+        };
+
+        let request = new XMLHttpRequest();
+        request.open('POST', 'dijkstra_solver', false);
+        request.send(JSON.stringify(input));
+
+        if (request.status === 200) {
+            let data = JSON.parse(request.responseText);
+            if ('status' in data && data.status === 'ok') {
+                console.log(data);
+            } else if ('error' in data) {
+                toastr.warning(data.error);
+            }
+        }
     } else {
         toastr.warning(error);
     }
