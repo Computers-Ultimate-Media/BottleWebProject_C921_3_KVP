@@ -9,9 +9,14 @@ function draw_matrix(size) {
     let body = $("#matrix").find('tbody');
     body.empty();
 
+    let vertex = $("#vertex");
+    vertex.append($('<option>').text('Выберите вершину').prop('disabled', true).prop('selected', true))
+
     matrixSize = size;
 
     for (let i = 0; i < size; ++i) {
+        vertex.append($('<option>').text('' + i));
+
         let tr = body.append($('<tr>'));
         for (let j = 0; j < size; ++j) {
             let input = $('<input>')

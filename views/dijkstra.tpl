@@ -21,12 +21,6 @@
             <div class="form-group">
                 <label for="vertex" class="form-label mt-4">Начальная вершина</label>
                 <select class="form-select" id="vertex" required>
-                    <option disabled selected>Выберите вершину</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
                 </select>
             </div>
 
