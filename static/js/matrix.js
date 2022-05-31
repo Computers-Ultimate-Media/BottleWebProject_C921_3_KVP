@@ -62,6 +62,7 @@ function onSubmitMatrix() {
     }
 
     let isValidMatrix = true;
+    let selectedOption = $("#vertex").val();
 
     $("input[name]").each(function (index, element) {
         let data = element.name.split('_');
@@ -79,10 +80,18 @@ function onSubmitMatrix() {
         }
     });
 
-    if (isValidMatrix) {
-        console.log(JSON.stringify(matrix));
+    let error = '';
+
+    if (!isValidMatrix) {
+        error = 'Заполните матрицу расстояний';
+    } else if (selectedOption === null) {
+        error = 'Укажите начальную вершину';
+    }
+
+    if (error === '') {
+        console.log(Number.parseInt(selectedOption), JSON.stringify(matrix));
     } else {
-        toastr.warning('Заполните матрицу расстояний');
+        toastr.warning(error);
     }
 
     return false;
