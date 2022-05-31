@@ -10,6 +10,8 @@ function draw_matrix(size) {
     body.empty();
 
     let vertex = $("#vertex");
+    vertex.empty();
+
     vertex.append($('<option>').text('Выберите вершину').prop('disabled', true).prop('selected', true))
 
     matrixSize = size;
