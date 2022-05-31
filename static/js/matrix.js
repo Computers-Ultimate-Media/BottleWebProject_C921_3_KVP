@@ -101,7 +101,7 @@ function onSubmitMatrix() {
         if (request.status === 200) {
             let data = JSON.parse(request.responseText);
             if ('status' in data && data.status === 'ok') {
-                console.log(data);
+                console.log(data['result']);
             } else if ('error' in data) {
                 toastr.warning(data.error);
             }
