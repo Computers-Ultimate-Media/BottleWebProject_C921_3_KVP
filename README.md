@@ -31,7 +31,7 @@ py ./app.py
 
 * [BottlePy](https://bottlepy.org/) - Python Web Framework
 * [Bootstrap](https://getbootstrap.com/) - Free and open-source CSS framework
-* [Minty theme](https://bootswatch.com/minty/) - Bootstrap theme that we used
+* [Zephyr theme](https://bootswatch.com/zephyr/) - Bootstrap theme that we used
 
 ## Versioning
 
