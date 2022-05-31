@@ -50,6 +50,34 @@ $("#button-update").click(function () {
     draw_matrix(size)
 });
 
+function printResults(result) {
+    console.log(result);
+
+    let resultTable = $('#result-table');
+    resultTable.empty();
+
+    resultTable.append($('<label>').attr('class', 'form-label mt-4').text('Расстояния от начальной вершины до других'));
+
+    let table = $('<table>').attr('class', 'table table-bordered table-striped');
+
+    let thead = $('<thead>').append(
+        $('<tr>')
+            .append($('<th>').attr('scope', 'col').text('Индекс вершины'))
+            .append($('<th>').attr('scope', 'col').text('Расстояние до вершины'))
+    );
+
+    let tbody = $('<tbody>');
+
+    for (let i = 0; i < result.length; ++i) {
+        tbody.append($('<tr>').append(
+            $('<td>').text('' + i),
+            $('<td>').text('' + result[i]),
+        ));
+    }
+
+    resultTable.append(table.append(thead).append(tbody));
+}
+
 function onSubmitMatrix() {
     let matrix = [];
 
@@ -101,7 +129,7 @@ function onSubmitMatrix() {
         if (request.status === 200) {
             let data = JSON.parse(request.responseText);
             if ('status' in data && data.status === 'ok') {
-                console.log(data['result']);
+                printResults(data['result']);
             } else if ('error' in data) {
                 toastr.warning(data.error);
             }
