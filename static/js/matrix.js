@@ -12,7 +12,7 @@ function draw_matrix(size) {
     let vertex = $("#vertex");
     vertex.empty();
 
-    vertex.append($('<option>').text('Выберите вершину').prop('disabled', true).prop('selected', true))
+    vertex.append($('<option>').text('Выберите вершину').prop('disabled', true).prop('selected', true));
 
     matrixSize = size;
 
@@ -40,11 +40,11 @@ draw_matrix(matrixSize);
 $("#button-update").click(function () {
     let size = Number.parseInt($("#input-size").val());
     if (size < 3) {
-        toastr.warning('Слишком маленький размер матрицы')
+        toastr.warning('Слишком маленький размер матрицы');
         return;
     }
     if (size > 15) {
-        toastr.warning('Слишком большой размер матрицы')
+        toastr.warning('Слишком большой размер матрицы');
         return;
     }
     draw_matrix(size)
@@ -82,7 +82,7 @@ function onSubmitMatrix() {
     if (isValidMatrix) {
         console.log(JSON.stringify(matrix));
     } else {
-        toastr.warning('Заполните матрицу расстояний')
+        toastr.warning('Заполните матрицу расстояний');
     }
 
     return false;
