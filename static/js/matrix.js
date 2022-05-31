@@ -73,7 +73,7 @@ function onSubmitMatrix() {
     });
 
     if (isValidMatrix) {
-        console.log(matrix);
+        console.log(JSON.stringify(matrix));
     } else {
         toastr.warning('Заполните матрицу расстояний')
     }
