@@ -1,7 +1,7 @@
 % rebase('layout.tpl', title=title, menu=menu, year=year)
 
 <div class="container col-md-4 col-md-offset-4" style="margin: 0 auto; width:80%;">
-    <form>
+    <form onsubmit="return onSubmitMatrix();">
         <table id="matrix" align="center">
             <tbody></tbody>
         </table>

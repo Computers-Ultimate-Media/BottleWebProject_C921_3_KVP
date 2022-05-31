@@ -17,7 +17,8 @@ function draw_matrix(size) {
             let input = $('<input>')
                 .attr('class', 'matrix-input hide-arrows')
                 .attr('type', 'number')
-                .attr('onkeypress', 'return isNumberKey(event)');
+                .attr('onkeypress', 'return isNumberKey(event)')
+                .attr('name', i + '_' + j);
             if (i >= j) {
                 input.prop('disabled', true);
                 input.css("background-color", 'gray')
@@ -41,3 +42,41 @@ $("#button-update").click(function () {
     }
     draw_matrix(size)
 });
+
+function onSubmitMatrix() {
+    let matrix = [];
+
+    for (let i = 0; i < matrixSize; ++i) {
+        let row = [];
+        for (let j = 0; j < matrixSize; ++j) {
+            row.push(0);
+        }
+        matrix.push(row);
+    }
+
+    let isValidMatrix = true;
+
+    $("input[name]").each(function (index, element) {
+        let data = element.name.split('_');
+
+        let i = Number.parseInt(data[0]);
+        let j = Number.parseInt(data[1]);
+
+        if (i < j) {
+            if (element.value === '') {
+                isValidMatrix = false;
+            } else {
+                matrix[i][j] = element.valueAsNumber;
+                matrix[j][i] = element.valueAsNumber;
+            }
+        }
+    });
+
+    if (isValidMatrix) {
+        console.log(matrix);
+    } else {
+        toastr.warning('Заполните матрицу расстояний')
+    }
+
+    return false;
+}
