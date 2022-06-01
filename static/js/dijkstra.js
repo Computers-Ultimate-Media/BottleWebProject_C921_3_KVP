@@ -7,12 +7,14 @@ function isNumberKey(event) {
 }
 
 
+//очистить введенное поле
 function clearEdge(event) {
     event.target.value = '';
 }
 
+//поставить 0 во введенное поле
 function setZeroEdge(event) {
-    if (event.target.value == '') {
+    if (event.target.value === '') {
         event.target.value = '0';
     }
 }
