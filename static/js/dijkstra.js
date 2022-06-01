@@ -127,14 +127,12 @@ function onSubmitMatrix() {
         return false;
     }
 
-    let input = {
-        'matrix': matrix,
-        'vertex': Number.parseInt(selectedOption),
-    };
-
     let request = new XMLHttpRequest();
     request.open('POST', 'dijkstra_solver', false);
-    request.send(JSON.stringify(input));
+    request.send(JSON.stringify({
+        'matrix': matrix,
+        'vertex': Number.parseInt(selectedOption),
+    }));
 
     if (request.status === 200) {
         let data = JSON.parse(request.responseText);
