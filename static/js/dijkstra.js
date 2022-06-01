@@ -1,10 +1,12 @@
-let matrixSize = 3;
+let matrixSize = 3; //размер матрицы по умолчанию
 
+//функция для проверки того, является ли введенный текст числом
 function isNumberKey(event) {
     const charCode = (event.which) ? event.which : event.keyCode;
     return !(charCode > 31 && (charCode < 48 || charCode > 57));
 }
 
+//функция для отрисовки матрицы с заданным размером
 function draw_matrix(size) {
     let body = $("#matrix").find('tbody');
     body.empty();
@@ -17,15 +19,18 @@ function draw_matrix(size) {
     matrixSize = size;
 
     for (let i = 0; i < size; ++i) {
+        //дополнение опции в выпадающем списке
         vertex.append($('<option>').text('' + i));
 
-        let tr = body.append($('<tr>'));
+        let tr = body.append($('<tr>')); //вставка строки в таблицу
         for (let j = 0; j < size; ++j) {
+            //вставка столбца в строку таблицы
             let input = $('<input>')
                 .attr('class', 'matrix-input hide-arrows')
                 .attr('type', 'number')
                 .attr('onkeypress', 'return isNumberKey(event)')
                 .attr('name', i + '_' + j);
+            //форматирование столбцов, которые дублируются серым цветом с отключением ввода в input
             if (i >= j) {
                 input.prop('disabled', true);
                 input.css("background-color", 'gray')
@@ -35,8 +40,9 @@ function draw_matrix(size) {
     }
 }
 
-draw_matrix(matrixSize);
+draw_matrix(matrixSize); //отрисовка матрицы с размером по умолчанию
 
+//обработчик нажатия на кнопку обновления размера матрицы
 $("#button-update").click(function () {
     let size = Number.parseInt($("#input-size").val());
 
@@ -58,6 +64,7 @@ $("#button-update").click(function () {
     draw_matrix(size)
 });
 
+//функция для вывода данных из массива в html таблицу на сайте
 function printResults(result) {
     let resultTable = $('#result-table');
     resultTable.empty();
@@ -84,9 +91,12 @@ function printResults(result) {
     resultTable.append(table.append(thead).append(tbody));
 }
 
+//обработчик событий для формы с вводом матрицы
 function onSubmitMatrix() {
+    //переменная с пустой матрицей размером matrixSize
     let matrix = [];
 
+    //заполнение двумерного массива размером matrixSize * matrixSize
     for (let i = 0; i < matrixSize; ++i) {
         let row = [];
         for (let j = 0; j < matrixSize; ++j) {
@@ -95,9 +105,10 @@ function onSubmitMatrix() {
         matrix.push(row);
     }
 
-    let isValidMatrix = true;
-    let selectedOption = $("#vertex").val();
+    let isValidMatrix = true; //введены ли все поля в матрице?
+    let selectedOption = $("#vertex").val(); //выбранная начальная вершина
 
+    //заполнение матрицы данными из таблицы
     $("input[name]").each(function (index, element) {
         let data = element.name.split('_');
 
@@ -122,11 +133,13 @@ function onSubmitMatrix() {
         error = 'Укажите начальную вершину';
     }
 
+    //отображение возможных ошибок на странице
     if (error !== '') {
         toastr.warning(error);
         return false;
     }
 
+    //отправка POST запроса на маршрут /dijkstra_solver
     let request = new XMLHttpRequest();
     request.open('POST', 'dijkstra_solver', false);
     request.send(JSON.stringify({
@@ -134,6 +147,7 @@ function onSubmitMatrix() {
         'vertex': Number.parseInt(selectedOption),
     }));
 
+    //обработка полученного ответа от сервера
     if (request.status === 200) {
         let data = JSON.parse(request.responseText);
         if ('status' in data && data.status === 'ok') {
