@@ -50,8 +50,8 @@ function draw_matrix(size) {
             } else {
                 //установка полезных событий на все остальные input теги
                 input
-                    .attr('onkeypress', 'return isNumberKey(event)')
                     .attr('value', '0')
+                    .attr('onkeypress', 'return isNumberKey(event)')
                     .attr('onclick', 'return clearEdge(event)')
                     .attr('onblur', 'return setZeroEdge(event)');
             }
