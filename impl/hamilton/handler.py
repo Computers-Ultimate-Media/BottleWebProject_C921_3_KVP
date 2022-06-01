@@ -1,25 +1,24 @@
-from bottle import route, view, post, request, redirect
 
-import sys
-sys.path.append('../')
+from bottle import route, request
+from impl.hamilton.hamiltonian_algorithm import HamiltonianAlgorithm
 
-from utils import isCorrectMatrix
-from hamilton import hamilton
+@route('/example_get_route', method='get')
+def example_get_route():
+    return 'TODO'
 
-@post('/hamilton', method='post')
-def hamilton():
-    matrix = request.params.matrix
-    
-    if not isCorrectMatrix(matrix):
-        print('Матрица не квадратная')
-        return
 
-    path = hamilton(matrix)
+@route('/hamilton_solver', method='post')
+def hamilton_solver():
+    from json import dumps as json_dumps, loads as json_loads
 
-    if(len(path) != 0)
-        # todo: результат, путь есть
-        redirect('/results', path)
-    else 
-        # todo: результат, пути нет
-        redirect('/results')
+    data = request.body.getvalue().decode('utf-8')
+    data = json_loads(data)
 
+    matrix = data['matrix']
+
+    hamilton = HamiltonianAlgorithm(matrix)
+    result = hamilton.solve(vertex)
+
+    print(result)
+
+    return json_dumps({'status': 'ok', 'result': result})
