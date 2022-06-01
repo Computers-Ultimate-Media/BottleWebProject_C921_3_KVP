@@ -39,18 +39,22 @@ draw_matrix(matrixSize);
 
 $("#button-update").click(function () {
     let size = Number.parseInt($("#input-size").val());
+
+    let error = '';
+
     if (isNaN(size)) {
-        toastr.warning('Укажите размер матрицы');
+        error = 'Укажите размер матрицы';
+    } else if (size < 3) {
+        error = 'Слишком маленький размер матрицы';
+    } else if (size > 15) {
+        error = 'Слишком большой размер матрицы';
+    }
+
+    if (error !== '') {
+        toastr.warning(error);
         return;
     }
-    if (size < 3) {
-        toastr.warning('Слишком маленький размер матрицы');
-        return;
-    }
-    if (size > 15) {
-        toastr.warning('Слишком большой размер матрицы');
-        return;
-    }
+
     draw_matrix(size)
 });
 
