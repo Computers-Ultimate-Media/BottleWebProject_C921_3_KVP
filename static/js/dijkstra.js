@@ -122,26 +122,27 @@ function onSubmitMatrix() {
         error = 'Укажите начальную вершину';
     }
 
-    if (error === '') {
-        let input = {
-            'matrix': matrix,
-            'vertex': Number.parseInt(selectedOption),
-        };
-
-        let request = new XMLHttpRequest();
-        request.open('POST', 'dijkstra_solver', false);
-        request.send(JSON.stringify(input));
-
-        if (request.status === 200) {
-            let data = JSON.parse(request.responseText);
-            if ('status' in data && data.status === 'ok') {
-                printResults(data['result']);
-            } else if ('error' in data) {
-                toastr.warning(data.error);
-            }
-        }
-    } else {
+    if (error !== '') {
         toastr.warning(error);
+        return false;
+    }
+
+    let input = {
+        'matrix': matrix,
+        'vertex': Number.parseInt(selectedOption),
+    };
+
+    let request = new XMLHttpRequest();
+    request.open('POST', 'dijkstra_solver', false);
+    request.send(JSON.stringify(input));
+
+    if (request.status === 200) {
+        let data = JSON.parse(request.responseText);
+        if ('status' in data && data.status === 'ok') {
+            printResults(data['result']);
+        } else if ('error' in data) {
+            toastr.warning(data.error);
+        }
     }
 
     return false;
