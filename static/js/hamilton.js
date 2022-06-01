@@ -48,6 +48,8 @@ function draw_matrix(size) {
             } else {
                 input
                     .attr('value', '0')
+                    .attr('min', '0')
+                    .attr('max', '1')
                     .attr('maxlength', 1)
                     .attr('onkeypress', 'return isGraphArcWeightNumberKey(event)')
                     .attr('onclick', 'return clearEdge(event)')
@@ -62,7 +64,6 @@ draw_matrix(matrixSize);
 
 $("#button-update").click(function() {
     let size = Number.parseInt($("#input-size").val());
-
 
     if (isNaN(size)) {
         toastr.warning('Укажите размер матрицы');

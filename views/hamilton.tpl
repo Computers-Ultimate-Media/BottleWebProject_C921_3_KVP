@@ -9,8 +9,11 @@
             <label class="form-label mt-4">Размерность матрицы расстояний</label>
             <div class="form-group">
                 <div class="input-group mb-3">
-                    <input type="number" class="form-control r" placeholder="Введите размерность"
-                    aria-describedby="button-update" id="input-size" onkeypress="return isNumberKey(event)">
+                    <input type="number" class="form-control r" id="input-size"
+                    placeholder="Введите размерность"
+                    aria-describedby="button-update"
+                    onkeypress="return isNumberKey(event)"
+                    min="0">
                     <button class="btn btn-primary" type="button" id="button-update">Обновить</button>
                 </div>
             </div>
