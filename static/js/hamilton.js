@@ -2,7 +2,24 @@ let matrixSize = 3;
 
 function isNumberKey(event) {
     const charCode = (event.which) ? event.which : event.keyCode;
+    return !(charCode > 31 && (charCode < 48 || charCode > 57));
+}
+
+function isGraphArcWeightNumberKey(event) {
+    const charCode = (event.which) ? event.which : event.keyCode;
     return (charCode == 48 || charCode == 49);
+}
+
+function clearEdge(event) {
+    event.target.value = '';
+}
+
+function setZeroEdge(event) {
+    console.log('event')
+    console.log(event)
+    if (event.target.value == '') {
+        event.target.value = '0';
+    }
 }
 
 function draw_matrix(size) {
@@ -24,11 +41,17 @@ function draw_matrix(size) {
             let input = $('<input>')
                 .attr('class', 'matrix-input hide-arrows')
                 .attr('type', 'number')
-                .attr('onkeypress', 'return isNumberKey(event)')
                 .attr('name', i + '_' + j);
             if (i >= j) {
                 input.prop('disabled', true);
                 input.css("background-color", 'gray')
+            } else {
+                input
+                    .attr('value', '0')
+                    .attr('maxlength', 1)
+                    .attr('onkeypress', 'return isGraphArcWeightNumberKey(event)')
+                    .attr('onclick', 'return clearEdge(event)')
+                    .attr('onblur', 'return setZeroEdge(event)');
             }
             tr.append($('<td>').append($('<label>').append(input)));
         }
@@ -37,14 +60,20 @@ function draw_matrix(size) {
 
 draw_matrix(matrixSize);
 
-$("#button-update").click(function () {
+$("#button-update").click(function() {
     let size = Number.parseInt($("#input-size").val());
+
+
+    if (isNaN(size)) {
+        toastr.warning('Укажите размер матрицы');
+        return;
+    }
     if (size < 3) {
-        toastr.warning('Слишком маленький размер матрицы');
+        toastr.warning('Матрица должна быть не менее 3');
         return;
     }
     if (size > 15) {
-        toastr.warning('Слишком большой размер матрицы');
+        toastr.warning('Матрица должна быть не более 15');
         return;
     }
     draw_matrix(size)
@@ -56,20 +85,20 @@ function printResults(result) {
     let resultTable = $('#result-table');
     resultTable.empty();
 
-    resultTable.append($('<label>').attr('class', 'form-label mt-4').text('Расстояния от начальной вершины до других'));
+    resultTable.append($('<label>').attr('class', 'form-label mt-4').text('Порядок вершин, образующих Гамильтонов цикл'));
 
     let table = $('<table>').attr('class', 'table table-bordered table-striped');
 
     let thead = $('<thead>').append(
         $('<tr>')
-            .append($('<th>').attr('scope', 'col').text('Индекс вершины'))
+        .append($('<th>').attr('scope', 'col').text('Индекс вершины'))
     );
 
     let tbody = $('<tbody>');
 
     for (let i = 0; i < result.length; ++i) {
         tbody.append($('<tr>').append(
-            $('<td>').text('' + result[i]),
+            $('<td>').text(result[i] + 1),
         ));
     }
 
@@ -89,7 +118,7 @@ function onSubmitMatrix() {
 
     let isValidMatrix = true;
 
-    $("input[name]").each(function (index, element) {
+    $("input[name]").each(function(index, element) {
         let data = element.name.split('_');
 
         let i = Number.parseInt(data[0]);
