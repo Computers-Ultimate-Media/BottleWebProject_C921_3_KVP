@@ -54,8 +54,6 @@ $("#button-update").click(function () {
 });
 
 function printResults(result) {
-    console.log(result);
-
     let resultTable = $('#result-table');
     resultTable.empty();
 
