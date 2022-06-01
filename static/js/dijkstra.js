@@ -42,11 +42,13 @@ function draw_matrix(size) {
                 .attr('class', 'matrix-input hide-arrows')
                 .attr('type', 'number')
                 .attr('name', i + '_' + j);
-            //форматирование столбцов, которые дублируются серым цветом с отключением ввода в input
+
             if (i >= j) {
+                //форматирование столбцов, которые дублируются серым цветом с отключением ввода в input
                 input.prop('disabled', true);
                 input.css("background-color", 'gray')
             } else {
+                //установка полезных событий на все остальные input теги
                 input
                     .attr('onkeypress', 'return isNumberKey(event)')
                     .attr('value', '0')
