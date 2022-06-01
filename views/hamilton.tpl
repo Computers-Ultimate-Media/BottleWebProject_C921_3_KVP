@@ -18,15 +18,9 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="vertex" class="form-label mt-4">Начальная вершина</label>
-                <select class="form-select" id="vertex" required>
-                </select>
-            </div>
-
             <br>
 
-            <button type="submit" class="btn btn-primary">Найти расстояния</button>
+            <button type="submit" class="btn btn-primary">Найти цикл</button>
         </fieldset>
     </form>
 

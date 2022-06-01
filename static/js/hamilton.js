@@ -63,14 +63,12 @@ function printResults(result) {
     let thead = $('<thead>').append(
         $('<tr>')
             .append($('<th>').attr('scope', 'col').text('Индекс вершины'))
-            .append($('<th>').attr('scope', 'col').text('Расстояние до вершины'))
     );
 
     let tbody = $('<tbody>');
 
     for (let i = 0; i < result.length; ++i) {
         tbody.append($('<tr>').append(
-            $('<td>').text('' + i),
             $('<td>').text('' + result[i]),
         ));
     }
@@ -90,7 +88,6 @@ function onSubmitMatrix() {
     }
 
     let isValidMatrix = true;
-    let selectedOption = $("#vertex").val();
 
     $("input[name]").each(function (index, element) {
         let data = element.name.split('_');
@@ -112,18 +109,15 @@ function onSubmitMatrix() {
 
     if (!isValidMatrix) {
         error = 'Заполните матрицу расстояний';
-    } else if (selectedOption === null) {
-        error = 'Укажите начальную вершину';
     }
 
     if (error === '') {
         let input = {
             'matrix': matrix,
-            'vertex': Number.parseInt(selectedOption),
         };
 
         let request = new XMLHttpRequest();
-        request.open('POST', 'dijkstra_solver', false);
+        request.open('POST', 'hamilton_solver', false);
         request.send(JSON.stringify(input));
 
         if (request.status === 200) {

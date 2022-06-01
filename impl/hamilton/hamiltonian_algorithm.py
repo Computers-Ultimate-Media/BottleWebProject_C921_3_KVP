@@ -19,14 +19,14 @@ class HamiltonianAlgorithm:
         def hasHamiltonianCycle(start_edge_num: int) -> bool:
             path.append(start_edge_num)
             if len(path) == self.vertices():
-                if A[path[0]][path[-1]] == 1:
+                if self.graph[path[0]][path[-1]] == 1:
                     return True 
                 else: 
                     path.pop() 
                     return False 
             visited[start_edge_num] = True
             for next in range(self.vertices()): 
-                if A[start_edge_num][next] == 1 and not visited[next]: 
+                if self.graph[start_edge_num][next] == 1 and not visited[next]: 
                     if hasHamiltonianCycle(next): 
                         return True 
             visited[start_edge_num] = False 

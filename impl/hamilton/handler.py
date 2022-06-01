@@ -17,8 +17,9 @@ def hamilton_solver():
     matrix = data['matrix']
 
     hamilton = HamiltonianAlgorithm(matrix)
-    result = hamilton.solve(vertex)
+    result = hamilton.solve()
 
-    print(result)
-
-    return json_dumps({'status': 'ok', 'result': result})
+    if(len(result) != 0):
+        return json_dumps({'status': 'ok', 'result': result})
+    else:
+        return json_dumps({'status': 'error', 'error': 'В графе нет Гамильнонова цикла'})
