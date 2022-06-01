@@ -53,4 +53,7 @@ class DijkstraAlgorithm:
                 if self.graph[x][y] > 0 and not spt_set[y] and dist[y] > dist[x] + self.graph[x][y]:
                     dist[y] = dist[x] + self.graph[x][y]
 
+        if any(dist_val == maxsize for dist_val in dist):
+            raise ValueError
+
         return dist

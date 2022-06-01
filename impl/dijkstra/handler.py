@@ -12,7 +12,10 @@ def dijkstra_solver():
     matrix = data['matrix']
     vertex = data['vertex']
 
-    dijkstra = DijkstraAlgorithm(matrix)
-    result = dijkstra.solve(vertex)
+    try:
+        dijkstra = DijkstraAlgorithm(matrix)
+        result = dijkstra.solve(vertex)
+    except Exception as e:
+        return json_dumps({'error': 'Не удалось найти расстояния от этой вершины до других. Проверьте вашу матрицу'})
 
     return json_dumps({'status': 'ok', 'result': result})
