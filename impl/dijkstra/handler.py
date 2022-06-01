@@ -15,7 +15,7 @@ def dijkstra_solver():
     try:
         dijkstra = DijkstraAlgorithm(matrix)
         result = dijkstra.solve(vertex)
-    except Exception as e:
+    except ValueError:
         return json_dumps({'error': 'Не удалось найти расстояния от этой вершины до других. Проверьте вашу матрицу'})
 
     return json_dumps({'status': 'ok', 'result': result})
