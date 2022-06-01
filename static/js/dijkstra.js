@@ -40,6 +40,7 @@ draw_matrix(matrixSize);
 $("#button-update").click(function () {
     let size = Number.parseInt($("#input-size").val());
     if (isNaN(size)) {
+        toastr.warning('Укажите размер матрицы');
         return;
     }
     if (size < 3) {
