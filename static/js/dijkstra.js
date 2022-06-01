@@ -6,7 +6,18 @@ function isNumberKey(event) {
     return !(charCode > 31 && (charCode < 48 || charCode > 57));
 }
 
-//функция для отрисовки матрицы с заданным размером
+
+function clearEdge(event) {
+    event.target.value = '';
+}
+
+function setZeroEdge(event) {
+    if (event.target.value == '') {
+        event.target.value = '0';
+    }
+}
+
+// функция для отрисовки матрицы с заданным размером
 function draw_matrix(size) {
     let body = $("#matrix").find('tbody');
     body.empty();
@@ -28,12 +39,17 @@ function draw_matrix(size) {
             let input = $('<input>')
                 .attr('class', 'matrix-input hide-arrows')
                 .attr('type', 'number')
-                .attr('onkeypress', 'return isNumberKey(event)')
                 .attr('name', i + '_' + j);
             //форматирование столбцов, которые дублируются серым цветом с отключением ввода в input
             if (i >= j) {
                 input.prop('disabled', true);
                 input.css("background-color", 'gray')
+            } else {
+                input
+                    .attr('onkeypress', 'return isNumberKey(event)')
+                    .attr('value', '0')
+                    .attr('onclick', 'return clearEdge(event)')
+                    .attr('onblur', 'return setZeroEdge(event)');
             }
             tr.append($('<td>').append($('<label>').append(input)));
         }
