@@ -51,6 +51,7 @@ function draw_matrix(size) {
                 //установка полезных событий на все остальные input теги
                 input
                     .attr('value', '0')
+                    .attr('min', '0')
                     .attr('onkeypress', 'return isNumberKey(event)')
                     .attr('onclick', 'return clearEdge(event)')
                     .attr('onblur', 'return setZeroEdge(event)');
