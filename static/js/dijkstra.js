@@ -39,6 +39,9 @@ draw_matrix(matrixSize);
 
 $("#button-update").click(function () {
     let size = Number.parseInt($("#input-size").val());
+    if (isNaN(size)) {
+        return;
+    }
     if (size < 3) {
         toastr.warning('Слишком маленький размер матрицы');
         return;
