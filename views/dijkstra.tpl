@@ -1,16 +1,16 @@
 % rebase('layout.tpl', title=title, menu=menu, year=year)
 
 <div class="container col-md-4 col-md-offset-4" style="margin: 0 auto; width:80%;">
-    <div class="accordion" id="accordionExample">
+    <div class="accordion" id="accordionDescription">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
                         aria-expanded="true" aria-controls="collapseOne">
-                    Accordion Item #1
+                    Описание работы алгоритма Дейкстры
                 </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                 data-bs-parent="#accordionExample" style="">
+                 data-bs-parent="#accordionDescription" style="">
                 <div class="accordion-body">
                     <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse
                     plugin adds the appropriate classes that we use to style each element. These classes control the
