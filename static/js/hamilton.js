@@ -17,7 +17,7 @@ function clearEdge(event) {
 function setZeroEdge(event) {
     console.log('event')
     console.log(event)
-    if (event.target.value == '') {
+    if (event.target.value === '') {
         event.target.value = '0';
     }
 }
