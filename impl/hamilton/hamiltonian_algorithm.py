@@ -16,20 +16,20 @@ class HamiltonianAlgorithm:
         visited = [False] * self.vertices()
         path = []
 
-        def hasHamiltonianCycle(start_edge_num: int) -> bool:
-            path.append(start_edge_num)
+        def hasHamiltonianCycle(start_node_num: int) -> bool:
+            path.append(start_node_num)
             if len(path) == self.vertices():
                 if self.graph[path[0]][path[-1]] == 1:
                     return True 
                 else: 
                     path.pop() 
                     return False 
-            visited[start_edge_num] = True
+            visited[start_node_num] = True
             for next in range(self.vertices()): 
-                if self.graph[start_edge_num][next] == 1 and not visited[next]: 
+                if self.graph[start_node_num][next] == 1 and not visited[next]: 
                     if hasHamiltonianCycle(next): 
                         return True 
-            visited[start_edge_num] = False 
+            visited[start_node_num] = False 
             path.pop()
             return False
 
