@@ -10,8 +10,14 @@ function isGraphArcWeightNumberKey(event) {
     return (charCode == 48 || charCode == 49);
 }
 
-function clearEdge(event) {
-    event.target.value = '';
+function changeEdge(event) {
+    if(event.target.value === '0') {
+        event.target.value = '1';
+    }
+    else if(event.target.value === '1') {
+        event.target.value = '0';
+    }
+
 }
 
 function setZeroEdge(event) {
@@ -50,7 +56,7 @@ function draw_matrix(size) {
                     .attr('max', '1')
                     .attr('maxlength', 1)
                     .attr('onkeypress', 'return isGraphArcWeightNumberKey(event)')
-                    .attr('onclick', 'return clearEdge(event)')
+                    .attr('onclick', 'return changeEdge(event)')
                     .attr('onblur', 'return setZeroEdge(event)');
             }
             tr.append($('<td>').append($('<label>').append(input)));
