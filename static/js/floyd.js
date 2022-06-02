@@ -1,4 +1,4 @@
-let matrixSize = 3; //размер матрицы по умолчанию
+let matrixSize = 0; //размер матрицы по умолчанию
 
 //функция для проверки того, является ли введенный текст числом
 function isNumberKey(event) {
@@ -71,7 +71,7 @@ $("#button-update").click(function () {
 
     if (isNaN(size)) {
         error = 'Укажите размер матрицы';
-    } else if (size < 3) {
+    } else if (size < 1) {
         error = 'Слишком маленький размер матрицы';
     } else if (size > 15) {
         error = 'Слишком большой размер матрицы';

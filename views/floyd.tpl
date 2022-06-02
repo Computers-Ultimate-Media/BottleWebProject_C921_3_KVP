@@ -29,7 +29,7 @@
         <!-- Пустая таблица с id=matrix для отображения через jquery -->
         <table id="matrix" align="center">
             <tbody></tbody>
-        </table>
+        </table>    
 
         <fieldset>
             <!-- input для ввода матрицы расстояний, id=input-size -->
@@ -38,18 +38,13 @@
                 <div class="form-group">
                     <div class="input-group mb-3">
                         <input type="number" class="form-control hide-arrows" placeholder="Введите размерность"
-                               aria-describedby="button-update" id="input-size" onkeypress="return isNumberKey(event)">
+                               aria-describedby="button-update" id="input-size" onkeypress="return isNumberKey(event)"
+                               min="1"
+                               max="15">
                         <!-- кнопка для обновления размера матрицы, id=button-update -->
                         <button class="btn btn-primary" type="button" id="button-update">Обновить</button>
                     </div>
                 </div>
-            </div>
-
-            <!-- input для начальной вершины, id=vertex -->
-            <div class="form-group">
-                <label for="vertex" class="form-label mt-4">Начальная вершина</label>
-                <select class="form-select" id="vertex" required>
-                </select>
             </div>
 
             <br>
