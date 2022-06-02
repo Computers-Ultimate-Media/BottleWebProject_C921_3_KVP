@@ -91,7 +91,7 @@ def floyd():
     return base_page(dict(
         title='Алгоритм Флойда',
         menu=menu(3),
-    ))
+    ), styles=['/static/css/floyd.css'], scripts=['/static/js/floyd.js'])
 
 
 class Developer:
