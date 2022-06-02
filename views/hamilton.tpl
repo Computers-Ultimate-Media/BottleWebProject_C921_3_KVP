@@ -13,8 +13,8 @@
                 data-bs-parent="#accordionExample" style="">
                 <div class="accordion-body">
                     <div class="row" style="text-indent: 30px">
-                        <div class="col">
-                            <img height="auto" width="90%" src="https://upload.wikimedia.org/wikipedia/commons/b/be/Hamiltonian.png">
+                        <div class="col align-self-center">
+                            <img height="auto" width="90%" src="https://imgur.com/uxdvoEO.png">
                         </div>
                         <div class="col">
                             <div class="row">
@@ -44,8 +44,8 @@
                         </div>
                     </div>
                     <div class="row" style="text-indent: 30px">
-                        <div class="col">
-                            <img height="auto" width="90%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Hamiltonian_Dodecahedron_Graph.svg/800px-Hamiltonian_Dodecahedron_Graph.svg.png">
+                        <div class="col align-self-center">
+                            <img height="auto" width="90%" src="https://imgur.com/QcOUB32.png">
                         </div>
                         <div class="col">
                             <div class="row">
@@ -86,7 +86,7 @@
         <br>
         <button type="submit" class="btn btn-primary">Найти цикл</button>
     </fieldset>
-    
+
 </form>
 <div id="result-table">
 </div>
