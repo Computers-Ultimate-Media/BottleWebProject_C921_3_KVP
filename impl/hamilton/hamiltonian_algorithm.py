@@ -1,4 +1,6 @@
 from typing import List
+from impl.utils import isCorrectMatrix
+
 class HamiltonianAlgorithm:
     graph: List[List[int]]
 
@@ -6,13 +8,18 @@ class HamiltonianAlgorithm:
     def __init__(self, graph: List[List[int]]):
         self.graph = graph
 
-
     # Returns count of vertices in graph
     def vertices(self) -> int:
         return len(self.graph[0])
 
     # Finds distance by all vertices
     def solve(self):
+        if(not isCorrectMatrix(self.graph)):
+            return []
+        # if matrix size is 2, it can't has a cycle
+        if(len(self.graph) == 2):
+            return []
+
         visited = [False] * self.vertices()
         path = []
 
