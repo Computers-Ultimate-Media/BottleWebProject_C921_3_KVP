@@ -56,7 +56,7 @@ class Test_minimum_nodes_hamilton_algorithm(unittest.TestCase):
         hamilton = HamiltonianAlgorithm(
             [[1]]
             )
-        self.assertEqual(hamilton.solve(), [0])
+        self.assertEqual(hamilton.solve(), [1])
 
 # three nodes matrix
 class Test_three_nodes_hamilton_algorithm(unittest.TestCase):
@@ -95,7 +95,7 @@ class Test_three_nodes_hamilton_algorithm(unittest.TestCase):
             [0, 1, 1, 
             1, 0, 1, 
             1, 1, 0], 3))
-        self.assertEqual(hamilton.solve(), [0, 1, 2])
+        self.assertEqual(hamilton.solve(), [1, 2, 3])
 
 
 # five nodes matrix
@@ -142,7 +142,7 @@ class Test_five_nodes_hamilton_algorithm(unittest.TestCase):
             0, 1, 0, 1, 0, 
             0, 0, 1, 0, 1, 
             1, 0, 0, 1, 0], 5))
-        self.assertEqual(hamilton.solve(), [0, 1, 2, 3, 4])
+        self.assertEqual(hamilton.solve(), [1, 2, 3, 4, 5])
 
     # all nodes has a two random connections, cycel
     def test_minimum_nodes_complicated_way(self):
@@ -153,7 +153,7 @@ class Test_five_nodes_hamilton_algorithm(unittest.TestCase):
             1, 0, 0, 0, 1, 
             1, 1, 0, 0, 0, 
             0, 1, 1, 0, 0], 5))
-        self.assertEqual(hamilton.solve(), [0, 2, 4, 1, 3])
+        self.assertEqual(hamilton.solve(), [1, 3, 5, 2, 4])
 
     # all nodes has several random connections, cycel
     def test_default_one_way(self):
@@ -164,7 +164,7 @@ class Test_five_nodes_hamilton_algorithm(unittest.TestCase):
             0, 1, 0, 0, 1, 
             1, 0, 0, 0, 1, 
             0, 0, 1, 1, 0], 5))
-        self.assertEqual(hamilton.solve(), [0, 1, 2, 4, 3])
+        self.assertEqual(hamilton.solve(), [1, 2, 3, 5, 4])
 
     # all nodes has several random connections, cycel
     def test_default_several_way(self):
@@ -175,7 +175,7 @@ class Test_five_nodes_hamilton_algorithm(unittest.TestCase):
             0, 1, 0, 0, 1, 
             1, 0, 0, 0, 1, 
             0, 0, 1, 1, 0], 5))
-        self.assertEqual(hamilton.solve(), [0, 1, 2, 4, 3])
+        self.assertEqual(hamilton.solve(), [1, 2, 3, 5, 4])
 
 
 if __name__ == '__main__':
