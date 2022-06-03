@@ -115,6 +115,11 @@ $("#button-apply").click(function () {
         matrix.push(row);
     }
 
+    if (!(lines.length >= 3 && line.length <= 15)) {
+        toastr.warning("Размерность матрицы должна быть не менее 3 и не более 15");
+        return;
+    }
+
     //обновить матрицу на странице
     matrixSize = lines.length;
     draw_matrix(matrixSize);
