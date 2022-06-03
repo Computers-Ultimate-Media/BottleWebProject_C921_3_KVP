@@ -44,3 +44,26 @@ class Test_three_nodes_isCorrectMatrix(unittest.TestCase):
             [[0, 0, 0], 
             [0, 0, 0],
             [0, 0, 0]]), True)
+
+
+# matrix convertation 
+class Test_three_nodes_convert_list_to_square_matrix(unittest.TestCase):
+
+    # matrix convert
+    def test_three_matrix_convert_1(self):
+        self.assertEqual(
+            convert_list_to_square_matrix(
+                                        [0, 0, 0, 
+                                        0, 0, 0, 
+                                        0, 0, 0], 3) ==
+                                        [[0, 0, 0], 
+                                        [0, 0, 0],
+                                        [0, 0, 0]], True)
+    # matrix convert
+    def test_three_matrix_convert_2(self):
+        self.assertEqual(
+            convert_list_to_square_matrix(
+                                        [0, 0, 
+                                        0, 0], 2) ==
+                                        [[0, 0], 
+                                        [0, 0]], True)
