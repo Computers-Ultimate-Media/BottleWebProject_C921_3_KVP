@@ -132,6 +132,9 @@ $("#button-apply").click(function () {
             $('#' + i + '_' + j).val('' + matrix[i][j]);
         }
     }
+
+    toastr.success("Была создана матрица размерностью " + matrixSize);
+    $('#modalInputMatrix').modal('hide');
 });
 
 //function to output data from an array to an html table on a website
