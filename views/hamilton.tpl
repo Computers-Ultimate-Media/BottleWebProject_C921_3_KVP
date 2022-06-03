@@ -75,7 +75,6 @@
             <div class="form-group">
                 <div class="input-group mb-3">
                     <input type="number" class="form-control r" id="input-size"
-                    value="3" 
                     placeholder="Введите размерность"
                     aria-describedby="button-update"
                     onkeypress="return isNumberKey(event)"
