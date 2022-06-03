@@ -24,7 +24,7 @@ class Test_error_input_hamilton_algorithm(unittest.TestCase):
         self.assertEqual(hamilton.solve(), [])
 
 
-    # not sqare, no cycel
+    # not square, no cycel
     def test_not_square_matrix(self):
         hamilton = HamiltonianAlgorithm(
             [[]]
