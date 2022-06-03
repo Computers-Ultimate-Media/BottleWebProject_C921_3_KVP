@@ -1,3 +1,4 @@
+# convertation list to matrix by row size
 def convert_list_to_square_matrix(arr:list, size:int) -> list:
     A = []
     for i in range(size):
@@ -5,6 +6,7 @@ def convert_list_to_square_matrix(arr:list, size:int) -> list:
 
     return A
 
+# matrix validation
 def isCorrectMatrix(matrix:list) -> bool:
     if type(matrix) is not list:
         return False
