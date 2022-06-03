@@ -1,4 +1,4 @@
-
+from impl.algorithm_history import AlgorithmHistory
 from bottle import route, request
 from impl.hamilton.hamiltonian_algorithm import HamiltonianAlgorithm
 
@@ -18,6 +18,8 @@ def hamilton_solver():
 
     hamilton = HamiltonianAlgorithm(matrix)
     result = hamilton.solve()
+
+    AlgorithmHistory('hamilton', data, result).save()
 
     if(len(result) != 0):
         return json_dumps({'status': 'ok', 'result': result})
