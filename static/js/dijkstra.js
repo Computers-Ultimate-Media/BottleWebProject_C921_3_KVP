@@ -41,6 +41,7 @@ function draw_matrix(size) {
             let input = $('<input>')
                 .attr('class', 'matrix-input hide-arrows')
                 .attr('type', 'number')
+                .attr('id', i + '_' + j)
                 .attr('name', i + '_' + j);
 
             if (i >= j) {
@@ -83,6 +84,51 @@ $("#button-update").click(function () {
     }
 
     draw_matrix(size)
+});
+
+//обработчик нажатия на кнопку ввода матрицы из текста
+$("#button-apply").click(function () {
+    //переменная с пустой матрицей размером matrixSize
+    let matrix = [];
+
+    let lines = $('#matrixTextarea').val().split('\n');
+    for (let i = 0; i < lines.length; i++) {
+        let row = [];
+
+        let line = lines[i];
+
+        let parts = line.split(',');
+        if (parts.length !== lines.length) {
+            toastr.warning("Некорректая матрица расстояний");
+            return;
+        }
+
+        for (let part of parts) {
+            let number = Number.parseInt(part);
+            if (isNaN(number)) {
+                toastr.warning("Некорректые данные в тексте матрицы расстояний");
+                return;
+            }
+            row.push(number);
+        }
+
+        matrix.push(row);
+    }
+
+    //обновить матрицу на странице
+    matrixSize = lines.length;
+    draw_matrix(matrixSize);
+
+    console.log(matrix);
+
+    for (let i = 0; i < matrixSize; ++i) {
+        for (let j = 0; j < matrixSize; ++j) {
+            if (i >= j) {
+                continue;
+            }
+            $('#' + i + '_' + j).val('' + matrix[i][j]);
+        }
+    }
 });
 
 //функция для вывода данных из массива в html таблицу на сайте
