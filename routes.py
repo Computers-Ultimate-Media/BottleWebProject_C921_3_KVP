@@ -123,7 +123,7 @@ def about():
         developers=[
             Developer(
                 'Кулаков Роман',
-                'Такой себе разработчик',
+                'Разработка алгоритма Гамильтона',
                 'https://avatars.githubusercontent.com/u/68752471?v=4',
                 'Джавист',
                 'Напитонил',
