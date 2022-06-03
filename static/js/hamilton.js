@@ -72,21 +72,24 @@ function draw_matrix(size) {
 draw_matrix(matrixSize);
 
 // redraw matrix on update button
-$("#button-update").click(function() {
+$("#button-update").click(function () {
     let size = Number.parseInt($("#input-size").val());
 
+    let error = '';
+
     if (isNaN(size)) {
-        toastr.warning('Укажите размер матрицы');
+        error = 'Укажите размер матрицы';
+    } else if (size < 3) {
+        error = 'Размерность матрицы должна быть не менее 3';
+    } else if (size > 15) {
+        error = 'Размерность матрицы должна быть не более 15';
+    }
+
+    if (error !== '') {
+        toastr.warning(error);
         return;
     }
-    if (size < 3) {
-        toastr.warning('Матрица должна быть не менее 3');
-        return;
-    }
-    if (size > 15) {
-        toastr.warning('Матрица должна быть не более 15');
-        return;
-    }
+
     draw_matrix(size)
 });
 
