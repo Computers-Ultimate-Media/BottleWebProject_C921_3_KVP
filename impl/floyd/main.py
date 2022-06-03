@@ -11,7 +11,15 @@ def isHereWay(src: List[List[int]]) -> List[List[int]]:
 				new[i][j] = 1
 	return new
 	
-	
+
+def printMatrix(src: List[List[int]]):
+	print("-"*9*len(src))
+	for i in range(len(src)):
+		for j in range(len(src)):
+			print(src[i][j], end = "\t")
+		print()
+	print("-"*9*len(src))
+
 test = [
 [0,3,1,float('inf')],
 [3,0,1,2],
@@ -36,9 +44,13 @@ for k in range(n):
 	for i in range(n):
 		for j in range(n):
 			if (d[i][k] < float('inf') and d[k][j] < float('inf')):
-				#print(k+1,i+1,j+1, ": MIN <-", d[i][j], "vs (", d[i][k], "+", d[k][j], ") =", min(d[i][j], d[i][k] + d[k][j]))
+				print(k,i,j, ": MIN <-", d[i][j], "vs (", d[i][k], "+", d[k][j], ") =", min(d[i][j], d[i][k] + d[k][j]))
+				print(f"d[{i}][{j}] = min(d[{i}][{j}], d[{i}][{k}] + d[{k}][{j}])")
 				d[i][j] = min(d[i][j], d[i][k] + d[k][j])
+				printMatrix(d)
+				print()
 				
 
-print(d)
-print(s)
+print("Result:")
+printMatrix(d)
+printMatrix(s)
