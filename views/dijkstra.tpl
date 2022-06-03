@@ -1,6 +1,6 @@
 % rebase('layout.tpl', title=title, menu=menu, year=year)
 
-<!-- модальное окно для ввода матрицы из текста -->
+<!-- modal window for entering a matrix from text -->
 <div class="modal fade" id="modalInputMatrix" tabindex="-1" aria-labelledby="modalInputMatrixLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -98,28 +98,28 @@
 
     <br>
 
-    <!-- Форма с кастомный обработчиком событий -->
+    <!-- form with custom event handler -->
     <form onsubmit="return onSubmitMatrix();">
-        <!-- Пустая таблица с id=matrix для отображения через jquery -->
+        <!-- empty table with id=matrix to display via jquery -->
         <table id="matrix" align="center">
             <tbody></tbody>
         </table>
 
         <fieldset>
-            <!-- input для ввода матрицы расстояний, id=input-size -->
+            <!-- input for entering a distance matrix, id=input-size -->
             <div class="form-group">
                 <label class="form-label mt-4">Размерность матрицы расстояний</label>
                 <div class="form-group">
                     <div class="input-group mb-3">
                         <input type="number" class="form-control hide-arrows" placeholder="Введите размерность"
                                aria-describedby="button-update" id="input-size" onkeypress="return isNumberKey(event)">
-                        <!-- кнопка для обновления размера матрицы, id=button-update -->
+                        <!-- button to update the matrix size, id=button-update -->
                         <button class="btn btn-primary" type="button" id="button-update">Обновить</button>
                     </div>
                 </div>
             </div>
 
-            <!-- input для начальной вершины, id=vertex -->
+            <!-- input for the initial vertex, id=vertex -->
             <div class="form-group">
                 <label for="vertex" class="form-label mt-4">Начальная вершина</label>
                 <select class="form-select" id="vertex" required>
@@ -130,14 +130,14 @@
 
             <button type="submit" class="btn btn-primary">Найти расстояния</button>
 
-            <!-- button для открытия модального окна на сайте -->
+            <!-- button to open a modal window on the site -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalInputMatrix">
                 Ввести матрицу текстом
             </button>
         </fieldset>
     </form>
 
-    <!-- Результирующая таблица с id=result-table для отображения через jquery -->
+    <!-- result table with id=result-table to display via jquery -->
     <div id="result-table">
     </div>
 </div>

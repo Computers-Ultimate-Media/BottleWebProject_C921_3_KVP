@@ -1,25 +1,25 @@
-let matrixSize = 3; //размер матрицы по умолчанию
+let matrixSize = 3; //default matrix size
 
-//функция для проверки того, является ли введенный текст числом
+//function to check if the entered text is a number
 function isNumberKey(event) {
     const charCode = (event.which) ? event.which : event.keyCode;
     return !(charCode > 31 && (charCode < 48 || charCode > 57));
 }
 
 
-//очистить введенное поле
+//clear the entered field
 function clearEdge(event) {
     event.target.value = '';
 }
 
-//поставить 0 во введенное поле
+//set 0 in the entered field
 function setZeroEdge(event) {
     if (event.target.value === '') {
         event.target.value = '0';
     }
 }
 
-// функция для отрисовки матрицы с заданным размером
+//function for drawing a matrix with a given size
 function draw_matrix(size) {
     let body = $("#matrix").find('tbody');
     body.empty();
@@ -32,12 +32,12 @@ function draw_matrix(size) {
     matrixSize = size;
 
     for (let i = 0; i < size; ++i) {
-        //дополнение опции в выпадающем списке
+        //appending an option in the drop-down list
         vertex.append($('<option>').text('' + i));
 
-        let tr = body.append($('<tr>')); //вставка строки в таблицу
+        let tr = body.append($('<tr>')); //inserting a row into a table
         for (let j = 0; j < size; ++j) {
-            //вставка столбца в строку таблицы
+            //inserting a column into a table row
             let input = $('<input>')
                 .attr('class', 'matrix-input hide-arrows')
                 .attr('type', 'number')
@@ -45,11 +45,11 @@ function draw_matrix(size) {
                 .attr('name', i + '_' + j);
 
             if (i >= j) {
-                //форматирование столбцов, которые дублируются серым цветом с отключением ввода в input
+                //format columns that are duplicated in gray with input disabled
                 input.prop('disabled', true);
                 input.css("background-color", 'gray')
             } else {
-                //установка полезных событий на все остальные input теги
+                //set useful events on all other input tags
                 input
                     .attr('value', '0')
                     .attr('min', '0')
@@ -62,9 +62,9 @@ function draw_matrix(size) {
     }
 }
 
-draw_matrix(matrixSize); //отрисовка матрицы с размером по умолчанию
+draw_matrix(matrixSize); //drawing a matrix with the default size
 
-//обработчик нажатия на кнопку обновления размера матрицы
+//handler is called when pressing the button to update the matrix size
 $("#button-update").click(function () {
     let size = Number.parseInt($("#input-size").val());
 
@@ -86,9 +86,9 @@ $("#button-update").click(function () {
     draw_matrix(size)
 });
 
-//обработчик нажатия на кнопку ввода матрицы из текста
+//handler is called when pressing the matrix input button from the text
 $("#button-apply").click(function () {
-    //переменная с пустой матрицей размером matrixSize
+    //a variable with an empty matrix of size matrixSize
     let matrix = [];
 
     let lines = $('#matrixTextarea').val().split('\n');
@@ -120,7 +120,7 @@ $("#button-apply").click(function () {
         return;
     }
 
-    //обновить матрицу на странице
+    //update the matrix on the page
     matrixSize = lines.length;
     draw_matrix(matrixSize);
 
@@ -134,7 +134,7 @@ $("#button-apply").click(function () {
     }
 });
 
-//функция для вывода данных из массива в html таблицу на сайте
+//function to output data from an array to an html table on a website
 function printResults(result) {
     let resultTable = $('#result-table');
     resultTable.empty();
@@ -161,12 +161,12 @@ function printResults(result) {
     resultTable.append(table.append(thead).append(tbody));
 }
 
-//обработчик событий для формы с вводом матрицы
+//event handler for a form with matrix input
 function onSubmitMatrix() {
-    //переменная с пустой матрицей размером matrixSize
+    //a variable with an empty matrix of size matrixSize
     let matrix = [];
 
-    //заполнение двумерного массива размером matrixSize * matrixSize
+    //filling a two-dimensional array with matrixSize * matrixSize
     for (let i = 0; i < matrixSize; ++i) {
         let row = [];
         for (let j = 0; j < matrixSize; ++j) {
@@ -175,10 +175,10 @@ function onSubmitMatrix() {
         matrix.push(row);
     }
 
-    let isValidMatrix = true; //введены ли все поля в матрице?
-    let selectedOption = $("#vertex").val(); //выбранная начальная вершина
+    let isValidMatrix = true; //are all the fields in the matrix entered?
+    let selectedOption = $("#vertex").val(); //chosen starting point
 
-    //заполнение матрицы данными из таблицы
+    //filling the matrix with data from the table
     $("input[name]").each(function (index, element) {
         let data = element.name.split('_');
 
@@ -203,13 +203,13 @@ function onSubmitMatrix() {
         error = 'Укажите начальную вершину';
     }
 
-    //отображение возможных ошибок на странице
+    //display possible errors on the page
     if (error !== '') {
         toastr.warning(error);
         return false;
     }
 
-    //отправка POST запроса на маршрут /dijkstra_solver
+    //sending POST request to /dijkstra_solver route
     let request = new XMLHttpRequest();
     request.open('POST', 'dijkstra_solver', false);
     request.send(JSON.stringify({
@@ -217,7 +217,7 @@ function onSubmitMatrix() {
         'vertex': Number.parseInt(selectedOption),
     }));
 
-    //обработка полученного ответа от сервера
+    //processing the response received from the server
     if (request.status === 200) {
         let data = JSON.parse(request.responseText);
         if ('status' in data && data.status === 'ok') {
