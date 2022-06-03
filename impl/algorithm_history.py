@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 # Данный класс описывает объект файла логов
 class AlgorithmHistory:
     name: str
@@ -5,9 +8,9 @@ class AlgorithmHistory:
     input: any
     output: any
 
-    def __init__(self, name: str, date: str, input: any, output: any):
+    def __init__(self, name: str, input: any, output: any):
         self.name = name
-        self.date = date
+        self.date = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
         self.input = input
         self.output = output
 
