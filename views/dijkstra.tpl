@@ -10,13 +10,69 @@
                 </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                 data-bs-parent="#accordionDescription" style="">
+                 data-bs-parent="#accordionExample" style="">
                 <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse
-                    plugin adds the appropriate classes that we use to style each element. These classes control the
-                    overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                    this with custom CSS or overriding our default variables. It's also worth noting that just about any
-                    HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <div class="row">
+                        <div class="col align-self-center" style="text-indent: 30px">
+                            <img height="auto" width="90%" src="https://i.imgur.com/DdyaJpG.gif">
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <p>
+                                    <strong>Неформальное объяснение</strong><br>
+                                    Каждой вершине из <strong>V</strong> сопоставим метку — минимальное известное
+                                    расстояние от этой вершины до <strong>a</strong>.
+
+                                    Алгоритм работает пошагово — на каждом шаге он «посещает» одну вершину и пытается
+                                    уменьшать метки.
+                                    Работа алгоритма завершается, когда все вершины посещены.
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p>
+                                    <strong>Инициализация.</strong><br>Метка самой вершины <strong>a</strong> полагается
+                                    равной 0, метки остальных вершин — бесконечности. Это отражает то, что расстояния от
+                                    <strong>a</strong> до других вершин пока неизвестны. Все вершины графа помечаются
+                                    как непосещённые.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <p>
+                                    <strong id="alg-step">Шаг алгоритма.</strong><br>
+
+                                    Если все вершины посещены, алгоритм завершается.
+                                    <br>
+
+                                    В противном случае, из ещё не посещённых вершин выбирается вершина
+                                    <strong>u</strong>,
+                                    имеющая
+                                    минимальную метку.
+                                    <br>
+
+                                    Мы рассматриваем всевозможные маршруты, в которых <strong>u</strong> является
+                                    предпоследним пунктом.
+                                    Вершины, в которые ведут рёбра из <strong>u</strong>, назовём соседями этой вершины.
+                                    Для каждого
+                                    соседа вершины <strong>u</strong>, кроме отмеченных как посещённые, рассмотрим новую
+                                    длину пути,
+                                    равную сумме значений текущей метки <strong>u</strong> и длины ребра, соединяющего
+                                    <strong>u</strong> с этим
+                                    соседом.
+                                    <br>
+
+                                    Если полученное значение длины меньше значения метки соседа, заменим значение метки
+                                    полученным значением длины. Рассмотрев всех соседей, пометим вершину
+                                    <strong>u</strong> как
+                                    посещённую и повторим <a href="#alg-step">шаг алгоритма</a>.
+                                    <br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
