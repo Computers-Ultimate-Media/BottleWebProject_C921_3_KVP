@@ -33,7 +33,7 @@ function draw_matrix(size) {
 
     for (let i = 0; i < size; ++i) {
         //appending an option in the drop-down list
-        vertex.append($('<option>').text('' + i));
+        vertex.append($('<option>').text('' + (i + 1)));
 
         let tr = body.append($('<tr>')); //inserting a row into a table
         for (let j = 0; j < size; ++j) {
@@ -156,7 +156,7 @@ function printResults(result) {
 
     for (let i = 0; i < result.length; ++i) {
         tbody.append($('<tr>').append(
-            $('<td>').text('' + i),
+            $('<td>').text('' + (i + 1)),
             $('<td>').text('' + result[i]),
         ));
     }
@@ -217,7 +217,7 @@ function onSubmitMatrix() {
     request.open('POST', 'dijkstra_solver', false);
     request.send(JSON.stringify({
         'matrix': matrix,
-        'vertex': Number.parseInt(selectedOption),
+        'vertex': Number.parseInt(selectedOption) - 1,
     }));
 
     //processing the response received from the server
