@@ -1,4 +1,5 @@
 from bottle import route, request
+from impl.algorithm_history import AlgorithmHistory
 from impl.dijkstra.dijkstra_algorithm import DijkstraAlgorithm
 
 
@@ -17,5 +18,7 @@ def dijkstra_solver():
         result = dijkstra.solve(vertex)
     except ValueError:
         return json_dumps({'error': 'Не удалось найти расстояния от этой вершины до других. Проверьте вашу матрицу'})
+
+    AlgorithmHistory('dijkstra', data, result).save()
 
     return json_dumps({'status': 'ok', 'result': result})
