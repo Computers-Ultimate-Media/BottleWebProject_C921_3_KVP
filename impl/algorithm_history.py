@@ -1,4 +1,6 @@
+from os import getcwd
 from datetime import datetime
+from impl.config import Config
 
 
 # Данный класс описывает объект файла логов
@@ -22,3 +24,8 @@ class AlgorithmHistory:
             'input': self.input,
             'output': self.output,
         }
+
+    def save(self):
+        config = Config(getcwd(), 'history.json')
+        config.data.append(self.to_dict())
+        config.save()
