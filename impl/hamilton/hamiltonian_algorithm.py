@@ -4,15 +4,15 @@ from impl.utils import isCorrectMatrix
 class HamiltonianAlgorithm:
     graph: List[List[int]]
 
-    # Creates Hamiltonian instance
+    # creates Hamiltonian instance
     def __init__(self, graph: List[List[int]]):
         self.graph = graph
 
-    # Returns count of vertices in graph
+    # returns count of vertices in graph
     def vertices(self) -> int:
         return len(self.graph[0])
 
-    # Finds distance by all vertices
+    # finds distance by all vertices
     def solve(self):
         if(not isCorrectMatrix(self.graph)):
             return []
@@ -23,6 +23,7 @@ class HamiltonianAlgorithm:
         visited = [False] * self.vertices()
         path = []
 
+        # recursive algorithm for finding
         def hasHamiltonianCycle(start_node_num: int) -> bool:
             path.append(start_node_num)
             if len(path) == self.vertices():

@@ -1,15 +1,18 @@
 let matrixSize = 3;
 
+// input validation
 function isNumberKey(event) {
     const charCode = (event.which) ? event.which : event.keyCode;
     return !(charCode > 31 && (charCode < 48 || charCode > 57));
 }
 
+// node input validation
 function isGraphArcWeightNumberKey(event) {
     const charCode = (event.which) ? event.which : event.keyCode;
     return (charCode == 48 || charCode == 49);
 }
 
+// change node value onclick
 function changeNode(event) {
     if(event.target.value === '0') {
         event.target.value = '1';
@@ -20,12 +23,14 @@ function changeNode(event) {
 
 }
 
+// set node value if none 
 function setZeroToNode(event) {
     if (event.target.value === '') {
         event.target.value = '0';
     }
 }
 
+// draw matrix by size
 function draw_matrix(size) {
     let body = $("#matrix").find('tbody');
     body.empty();
@@ -66,6 +71,7 @@ function draw_matrix(size) {
 
 draw_matrix(matrixSize);
 
+// redraw matrix on update button
 $("#button-update").click(function() {
     let size = Number.parseInt($("#input-size").val());
 
@@ -84,6 +90,7 @@ $("#button-update").click(function() {
     draw_matrix(size)
 });
 
+// print algorithm results
 function printResults(result) {
     console.log(result);
 
@@ -110,6 +117,7 @@ function printResults(result) {
     resultTable.append(table.append(thead).append(tbody));
 }
 
+// send reqest to backend and print results
 function onSubmitMatrix() {
     let matrix = [];
 
