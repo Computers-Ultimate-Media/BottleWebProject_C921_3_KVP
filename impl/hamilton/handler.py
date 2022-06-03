@@ -16,12 +16,11 @@ def hamilton_solver():
 
     matrix = data['matrix']
 
-    hamilton = HamiltonianAlgorithm(matrix)
-    result = hamilton.solve()
-
-    AlgorithmHistory('hamilton', data, result).save()
+    result = HamiltonianAlgorithm(matrix).solve()
 
     if(len(result) != 0):
+        AlgorithmHistory('Hamilton Algorithm', data, result).save()
         return json_dumps({'status': 'ok', 'result': result})
     else:
+        AlgorithmHistory('Hamilton Algorithm', data, 'There is no Hamiltonian cycle in the graph').save()
         return json_dumps({'status': 'error', 'error': 'В графе нет Гамильнонова цикла'})
