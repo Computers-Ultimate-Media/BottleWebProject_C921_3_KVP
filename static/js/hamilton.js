@@ -50,6 +50,7 @@ function draw_matrix(size) {
             let input = $('<input>')
                 .attr('class', 'matrix-input hide-arrows')
                 .attr('type', 'number')
+                .attr('id', i + '_' + j)
                 .attr('name', i + '_' + j);
             if (i >= j) {
                 input.prop('disabled', true);
@@ -57,8 +58,6 @@ function draw_matrix(size) {
             } else {
                 input
                     .attr('value', '0')
-                    .attr('min', '0')
-                    .attr('max', '1')
                     .attr('maxlength', 1)
                     .attr('onkeypress', 'return isGraphArcWeightNumberKey(event)')
                     .attr('onclick', 'return changeNode(event)')
@@ -92,6 +91,63 @@ $("#button-update").click(function () {
 
     draw_matrix(size)
 });
+
+
+//handler is called when pressing the matrix input button from the text
+$("#button-apply").click(function () {
+    //a variable with an empty matrix of size matrixSize
+    let matrix = [];
+
+    let lines = $('#matrixTextarea').val().split('\n');
+    for (let i = 0; i < lines.length; i++) {
+        let row = [];
+
+        let line = lines[i];
+
+        let parts = line.split(',');
+        if (parts.length !== lines.length) {
+            toastr.warning("Некорректая матрица смежности");
+            return;
+        }
+
+        for (let part of parts) {
+            let number = Number.parseInt(part);
+            if (isNaN(number)) {
+                toastr.warning("Некорректые данные в тексте матрицы смежности");
+                return;
+            }
+            if (number !== 0 && number !== 1) {
+                toastr.warning("Матрица задается только 0 и 1");
+                return;
+            }
+            row.push(number);
+        }
+
+        matrix.push(row);
+    }
+
+    if (!(lines.length >= 3 && lines.length <= 15)) {
+        toastr.warning("Размерность матрицы должна быть не менее 3 и не более 15");
+        return;
+    }
+
+    //update the matrix on the page
+    matrixSize = lines.length;
+    draw_matrix(matrixSize);
+
+    for (let i = 0; i < matrixSize; ++i) {
+        for (let j = 0; j < matrixSize; ++j) {
+            if (i >= j) {
+                continue;
+            }
+            $('#' + i + '_' + j).val('' + matrix[i][j]);
+        }
+    }
+
+    toastr.success("Была создана матрица размерностью " + matrixSize);
+    $('#modalInputMatrix').modal('hide');
+});
+
 
 // print algorithm results
 function printResults(result) {

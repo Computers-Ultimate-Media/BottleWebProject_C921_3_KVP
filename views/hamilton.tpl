@@ -1,4 +1,23 @@
 % rebase('layout.tpl', title=title, menu=menu, year=year)
+
+<!-- modal window for entering a matrix from text -->
+<div class="modal fade" id="modalInputMatrix" tabindex="-1" aria-labelledby="modalInputMatrixLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalInputMatrixLabel">Введите матрицу через запятую по строкам</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" id="matrixTextarea" rows="10"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="button-apply">Применить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container col-md-4 col-md-offset-4" style="margin: 0 auto; width:80%;">
     <br>
     <div class="accordion" id="accordionExample">
@@ -85,6 +104,10 @@
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Найти цикл</button>
+        <!-- button to open a modal window on the site -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalInputMatrix">
+                Ввести матрицу текстом
+            </button>
     </fieldset>
 
 </form>
