@@ -119,8 +119,6 @@ $("#button-apply").click(function () {
     matrixSize = lines.length;
     draw_matrix(matrixSize);
 
-    console.log(matrix);
-
     for (let i = 0; i < matrixSize; ++i) {
         for (let j = 0; j < matrixSize; ++j) {
             if (i >= j) {
