@@ -103,7 +103,7 @@ function printResults(result) {
 
     for (let i = 0; i < result.length; ++i) {
         tbody.append($('<tr>').append(
-            $('<td>').text(result[i] + 1),
+            $('<td>').text(result[i]),
         ));
     }
 

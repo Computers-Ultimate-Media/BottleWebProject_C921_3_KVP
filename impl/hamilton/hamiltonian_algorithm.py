@@ -41,4 +41,5 @@ class HamiltonianAlgorithm:
             return False
 
         hasHamiltonianCycle(0)
+        path = [x+1 for x in path]
         return path
