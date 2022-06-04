@@ -2,7 +2,7 @@ import unittest
 from impl.dijkstra.dijkstra_algorithm import DijkstraAlgorithm
 
 class Test_test_dijkstra_algorithm(unittest.TestCase):
-    def test_A(self):
+    def test_matrix_1(self):
         dijkstra = DijkstraAlgorithm([
             [0, 4, 0, 0, 0, 0, 0, 8, 0],
             [4, 0, 8, 0, 0, 0, 0, 11, 0],
