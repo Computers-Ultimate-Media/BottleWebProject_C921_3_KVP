@@ -73,7 +73,7 @@ def hamilton():
     return base_page(dict(
         title='Гамильтонов цикл',
         menu=menu(1),
-    ))
+    ), styles=['/static/css/hamilton.css'], scripts=['/static/js/hamilton.js'])
 
 
 @route('/dijkstra')
