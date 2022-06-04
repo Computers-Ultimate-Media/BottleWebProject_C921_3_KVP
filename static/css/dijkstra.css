@@ -1,0 +1,16 @@
+.hide-arrows {
+    -webkit-appearance: none;
+    margin: 0;
+
+    -moz-appearance: textfield;
+}
+
+.matrix-input {
+    padding: 5px;
+    border: 2px solid #ccc;
+
+    max-width: 4.0em;
+    min-height: 4.0em;
+
+    text-align: center
+}
