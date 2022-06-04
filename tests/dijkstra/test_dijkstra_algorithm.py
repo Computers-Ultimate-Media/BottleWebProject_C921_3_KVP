@@ -24,5 +24,14 @@ class Test_test_dijkstra_algorithm(unittest.TestCase):
         self.assertEqual(dijkstra.solve(7), [8, 11, 7, 14, 13, 3, 1, 0, 7])
         self.assertEqual(dijkstra.solve(8), [14, 10, 2, 9, 16, 6, 6, 7, 0])
 
+    def test_matrix_2(self):
+        dijkstra = DijkstraAlgorithm([
+            [0, 0, 0],
+            [0, 0, 1],
+            [0, 0, 0],
+        ])
+        with self.assertRaises(ValueError):
+            dijkstra.solve(0)
+
 if __name__ == '__main__':
     unittest.main()
