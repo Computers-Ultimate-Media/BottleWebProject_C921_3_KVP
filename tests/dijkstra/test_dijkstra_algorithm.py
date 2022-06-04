@@ -30,8 +30,9 @@ class Test_test_dijkstra_algorithm(unittest.TestCase):
             [0, 0, 1],
             [0, 0, 0],
         ])
-        with self.assertRaises(ValueError):
-            dijkstra.solve(0)
+        for i in range(3):
+            with self.assertRaises(ValueError):
+                dijkstra.solve(i)
 
 if __name__ == '__main__':
     unittest.main()
