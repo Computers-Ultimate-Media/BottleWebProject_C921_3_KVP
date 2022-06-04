@@ -28,7 +28,7 @@ class MenuOption:
 
 def menu(idx=None):
     options = [
-        MenuOption('На главную', '/'),
+        MenuOption('Главная', '/'),
         MenuOption('Гамильтонов цикл', '/hamilton'),
         MenuOption('Алгоритм Дейкстры', '/dijkstra'),
         MenuOption('Алгоритм Флойда', '/floyd'),

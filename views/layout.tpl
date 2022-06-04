@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }} - GraphApp</title>
-    <!-- Подключение bootstrap minty theme, иконок и toastr -->
+    <!-- Connecting bootstrap minty theme, icons and toastr -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/static/css/toastr.min.css">
@@ -15,7 +15,7 @@
 <body>
 
 <div class="col-lg-8 mx-auto p-3 py-md-5">
-    <!-- Шапка сайта -->
+    <!-- Site header -->
     <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
             %for option in menu:
@@ -26,12 +26,12 @@
         </ul>
     </header>
 
-    <!-- Базовая часть страницы -->
+    <!-- The basic part of the page -->
     <main>
         {{!base}}
     </main>
 
-    <!-- Информация о нас в footer'е -->
+    <!-- Information about us at footer -->
     <footer class="pt-5 my-5 text-muted border-top">
         GraphApp Team &copy; {{ year }}<br>
         <i class="bi-github" role="img"></i>
@@ -42,7 +42,7 @@
     </footer>
 </div>
 
-<!-- Подключение bootstrap bundle, jquery, toastr -->
+<!-- Connecting bootstrap bundle, jquery, toastr -->
 <script src="/static/js/bootstrap.bundle.min.js"></script>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/toastr.min.js"></script>

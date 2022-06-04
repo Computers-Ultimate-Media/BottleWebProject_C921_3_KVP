@@ -1,5 +1,5 @@
 % rebase('layout.tpl', title=title, menu=menu, year=year)
-<!-- Заголовок сайта -->
+<!-- Site Title -->
 <div class="px-4 py-5 my-5 text-center">
    <h1 class="display-5 fw-bold">GraphApp</h1>
    <div class="col-lg-6 mx-auto">
@@ -7,7 +7,7 @@
       </p>
    </div>
 </div>
-<!-- Колонки с текстом -->
+<!-- Columns with text -->
 <div class="row">
    <div class="col-md-4">
       <h2><a href="/hamilton">Гамильтонов цикл</a></h2>
