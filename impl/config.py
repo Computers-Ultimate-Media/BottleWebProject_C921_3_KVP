@@ -2,7 +2,7 @@ from os.path import exists as file_exists, join as path_join
 from json import dumps as json_dumps, load as json_loads
 
 
-# Класс для работы файлами json в виде массива
+# class for handling json files as an array
 class Config:
     filename: str
     data: list = {}

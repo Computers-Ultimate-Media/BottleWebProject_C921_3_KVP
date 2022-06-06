@@ -1,7 +1,9 @@
+from os import getcwd
 from datetime import datetime
+from impl.config import Config
 
 
-# Данный класс описывает объект файла логов
+# This class describes the log file object
 class AlgorithmHistory:
     name: str
     date: str
@@ -14,7 +16,7 @@ class AlgorithmHistory:
         self.input = input
         self.output = output
 
-    # метод, который переводит класс в словарь
+    # method that translates a class into a dictionary
     def to_dict(self):
         return {
             'name': self.name,
@@ -22,3 +24,8 @@ class AlgorithmHistory:
             'input': self.input,
             'output': self.output,
         }
+
+    def save(self):
+        config = Config(getcwd(), 'history.json')
+        config.data.append(self.to_dict())
+        config.save()
