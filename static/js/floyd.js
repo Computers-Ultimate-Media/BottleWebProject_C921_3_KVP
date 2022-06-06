@@ -160,9 +160,9 @@ function onSubmitMatrix() {
         return false;
     }
 
-    //отправка POST запроса на маршрут /dijkstra_solver
+    //отправка POST запроса на маршрут /floyd_solver
     let request = new XMLHttpRequest();
-    request.open('POST', 'dijkstra_solver', false);
+    request.open('POST', 'floyd_solver', false);
     request.send(JSON.stringify({
         'matrix': matrix,
         'vertex': Number.parseInt(selectedOption),

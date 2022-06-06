@@ -1,12 +1,20 @@
 
 from typing import List
 
-class Floyd:
+class FloydAlgorithm:
 	graph:		List[List[int]]
 	shortest: 	List[List[int]]
 	paths: 		List[List[int]]
 	size:		int
 	
+	def __IncrementEachField(self):
+		for i in range(self.size):
+			for j in range(self.size):
+				if(self.shortest[i][j] != float('inf') or self.paths != float('inf')):
+					self.shortest[i][j] += 1
+					self.paths[i][j] += 1
+
+
 	def __FindWays(self):
 		for i in range(self.size):
 			for j in range(self.size):
@@ -29,6 +37,14 @@ class Floyd:
 		self.graph = graph
 		self.shortest = graph
 		self.paths = [[0 for _ in range(self.size)] for _ in range(self.size)]
-	
+
+	def solve(self): 
 		self.__FindWays()
 		self.__FloydShortestPaths()
+
+		dict = {
+			"shortest": self.shortest,
+			"paths": self.paths
+		}
+
+		return dict
