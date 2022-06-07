@@ -10,7 +10,6 @@ def floyd_solver():
     data = json_loads(data)
 
     matrix = data['matrix']
-    #vertex = data['vertex']
 
     try:
         floyd = FloydAlgorithm(matrix)
