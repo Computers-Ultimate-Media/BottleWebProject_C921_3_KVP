@@ -10,7 +10,7 @@ class FloydAlgorithm:
 	def __IncrementEachField(self):
 		for i in range(self.size):
 			for j in range(self.size):
-				if(self.shortest[i][j] != float('inf') or self.paths != float('inf')):
+				if(self.shortest[i][j] != -1 or self.paths != -1):
 					self.shortest[i][j] += 1
 					self.paths[i][j] += 1
 
@@ -18,8 +18,8 @@ class FloydAlgorithm:
 	def __FindWays(self):
 		for i in range(self.size):
 			for j in range(self.size):
-				if(self.graph[i][j] == float('inf')):
-					self.paths[i][j] = float('inf')
+				if(self.graph[i][j] == -1):
+					self.paths[i][j] = -1
 				else:
 					self.paths[i][j] = j
 					
@@ -27,7 +27,7 @@ class FloydAlgorithm:
 		for k in range(self.size):
 			for i in range(self.size):
 				for j in range(self.size):
-					if ((k != i) and (self.shortest[i][k] != float('inf')) and (k != j) and (self.shortest[k][j] != float('inf')) and (self.shortest[i][j] == float('inf') or (self.shortest[i][j] > self.shortest[i][k] + self.shortest[k][j]))):
+					if ((k != i) and (self.shortest[i][k] != -1) and (k != j) and (self.shortest[k][j] != -1) and (self.shortest[i][j] == -1 or (self.shortest[i][j] > self.shortest[i][k] + self.shortest[k][j]))):
 						self.paths[i][j] = self.paths[i][k]
 						self.shortest[i][j] = self.shortest[i][k] + self.shortest[k][j]
 						

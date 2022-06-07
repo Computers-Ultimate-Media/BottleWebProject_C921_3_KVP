@@ -3,7 +3,7 @@ let matrixSize = 0; //размер матрицы по умолчанию
 //функция для проверки того, является ли введенный текст числом
 function isNumberKey(event) {
     const charCode = (event.which) ? event.which : event.keyCode;
-    return !(charCode > 31 && (charCode < 48 || charCode > 57));
+    return !(charCode > 31 && (charCode < 48 || charCode > 57) && charCode === 189);
 }
 
 
@@ -24,17 +24,9 @@ function draw_matrix(size) {
     let body = $("#matrix").find('tbody');
     body.empty();
 
-    let vertex = $("#vertex");
-    vertex.empty();
-
-    vertex.append($('<option>').text('Выберите вершину').prop('disabled', true).prop('selected', true));
-
     matrixSize = size;
 
     for (let i = 0; i < size; ++i) {
-        //дополнение опции в выпадающем списке
-        vertex.append($('<option>').text('' + i));
-
         let tr = body.append($('<tr>')); //вставка строки в таблицу
         for (let j = 0; j < size; ++j) {
             //вставка столбца в строку таблицы
@@ -51,7 +43,7 @@ function draw_matrix(size) {
                 //установка полезных событий на все остальные input теги
                 input
                     .attr('value', '0')
-                    .attr('min', '0')
+                    .attr('min', '-1')
                     .attr('onkeypress', 'return isNumberKey(event)')
                     .attr('onclick', 'return clearEdge(event)')
                     .attr('onblur', 'return setZeroEdge(event)');
@@ -71,7 +63,7 @@ $("#button-update").click(function () {
 
     if (isNaN(size)) {
         error = 'Укажите размер матрицы';
-    } else if (size < 1) {
+    } else if (size < 2) {
         error = 'Слишком маленький размер матрицы';
     } else if (size > 15) {
         error = 'Слишком большой размер матрицы';
@@ -85,31 +77,63 @@ $("#button-update").click(function () {
     draw_matrix(size)
 });
 
+function printShortest(src, size) {
+    let body = $("#result-shortest").find('tbody');
+    body.empty();
+
+    for (let i = 0; i < size; ++i) {
+
+        let tr = body.append($('<tr>')); //вставка строки в таблицу
+        for (let j = 0; j < size; ++j) {
+            //вставка столбца в строку таблицы
+            let input = $('<input>')
+                .attr('class', 'matrix-input hide-arrows')
+                .attr('type', 'number')
+                .attr('name', i + '_' + j);
+
+                input.prop('disabled', true);
+                input.css("background-color", 'white')
+                input.attr('value', src[i][j])
+            
+            tr.append($('<td>').append($('<label>').append(input)));
+        }
+    }
+}
+
+function printPaths(src, size) {
+    let body = $("#result-paths").find('tbody');
+    body.empty();
+
+    for (let i = 0; i < size; ++i) {
+
+        let tr = body.append($('<tr>')); //вставка строки в таблицу
+        for (let j = 0; j < size; ++j) {
+            //вставка столбца в строку таблицы
+            let input = $('<input>')
+                .attr('class', 'matrix-input hide-arrows')
+                .attr('type', 'number')
+                .attr('name', i + '_' + j);
+
+            input.prop('disabled', true);
+            input.css("background-color", 'white');
+            input.attr('value', src[i][j]);
+
+            tr.append($('<td>').append($('<label>').append(input)));
+        }
+    }
+}
+
 //функция для вывода данных из массива в html таблицу на сайте
 function printResults(result) {
-    let resultTable = $('#result-table');
-    resultTable.empty();
 
-    resultTable.append($('<label>').attr('class', 'form-label mt-4').text('Расстояния от начальной вершины до других'));
+    let textShortest = $('#text-shortest');
+    let textPaths = $('#text-paths');
 
-    let table = $('<table>').attr('class', 'table table-bordered table-striped');
+    textShortest.text('Матрица кратчайших путей:');
+    textPaths.text('Матрица путей:');
 
-    let thead = $('<thead>').append(
-        $('<tr>')
-            .append($('<th>').attr('scope', 'col').text('Индекс вершины'))
-            .append($('<th>').attr('scope', 'col').text('Расстояние до вершины'))
-    );
-
-    let tbody = $('<tbody>');
-
-    for (let i = 0; i < result.length; ++i) {
-        tbody.append($('<tr>').append(
-            $('<td>').text('' + i),
-            $('<td>').text('' + result[i]),
-        ));
-    }
-
-    resultTable.append(table.append(thead).append(tbody));
+    printShortest(result['shortest'], matrixSize);
+    printPaths(result['paths'], matrixSize);
 }
 
 //обработчик событий для формы с вводом матрицы
@@ -127,7 +151,6 @@ function onSubmitMatrix() {
     }
 
     let isValidMatrix = true; //введены ли все поля в матрице?
-    let selectedOption = $("#vertex").val(); //выбранная начальная вершина
 
     //заполнение матрицы данными из таблицы
     $("input[name]").each(function (index, element) {
@@ -148,10 +171,8 @@ function onSubmitMatrix() {
 
     let error = '';
 
-    if (!isValidMatrix) {
+    if (!isValidMatrix || !matrixSize) {
         error = 'Заполните матрицу расстояний';
-    } else if (selectedOption === null) {
-        error = 'Укажите начальную вершину';
     }
 
     //отображение возможных ошибок на странице
@@ -165,7 +186,6 @@ function onSubmitMatrix() {
     request.open('POST', 'floyd_solver', false);
     request.send(JSON.stringify({
         'matrix': matrix,
-        'vertex': Number.parseInt(selectedOption),
     }));
 
     //обработка полученного ответа от сервера

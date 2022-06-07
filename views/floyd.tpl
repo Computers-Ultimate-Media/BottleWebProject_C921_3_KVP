@@ -39,7 +39,7 @@
                     <div class="input-group mb-3">
                         <input type="number" class="form-control hide-arrows" placeholder="Введите размерность"
                                aria-describedby="button-update" id="input-size" onkeypress="return isNumberKey(event)"
-                               min="1"
+                               min="2"
                                max="15">
                         <!-- кнопка для обновления размера матрицы, id=button-update -->
                         <button class="btn btn-primary" type="button" id="button-update">Обновить</button>
@@ -48,12 +48,22 @@
             </div>
 
             <br>
-
-            <button type="submit" class="btn btn-primary">Найти расстояния</button>
+            <!-- TODO: Переименовать? -->
+            <button type="submit" class="btn btn-primary">Расчитать</button>
         </fieldset>
     </form>
 
-    <!-- Результирующая таблица с id=result-table для отображения через jquery -->
-    <div id="result-table">
+    <!-- TODO: Переписать комментарии -->
+    <!-- Результирующая таблица с id=result-shortest для отображения через jquery -->
+    <div id="result-segment">
+        <label id="text-shortest" class="form-label mt-4"></label>
+        <table id="result-shortest" align="center">
+            <tbody></tbody>
+        </table>
+        <br>
+        <label id="text-paths" class="form-label mt-4"></label>
+        <table id="result-paths" align="center">
+            <tbody></tbody>
+        </table>    
     </div>
 </div>
