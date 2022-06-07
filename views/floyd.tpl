@@ -49,7 +49,11 @@
 
             <br>
             <!-- TODO: Переименовать? -->
-            <button type="submit" class="btn btn-primary">Расчитать</button>
+            <button type="submit" class="btn btn-primary">Расчитать матрицы</button>
+            <!-- button to open a modal window on the site -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalInputMatrix">
+                Ввести матрицу текстом
+            </button>
         </fieldset>
     </form>
 
