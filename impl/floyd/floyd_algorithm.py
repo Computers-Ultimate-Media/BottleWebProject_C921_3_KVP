@@ -7,6 +7,13 @@ class FloydAlgorithm:
 	paths: 		List[List[int]]
 	size:		int
 	
+	def __IncrementEachField(self):
+		for i in range(self.size):
+			for j in range(self.size):
+				if(self.shortest[i][j] != -1 or self.paths != -1):
+					self.paths[i][j] += 1
+
+
 	def __FindWays(self):
 		for i in range(self.size):
 			for j in range(self.size):
@@ -32,6 +39,7 @@ class FloydAlgorithm:
 
 	def solve(self): 
 		self.__FindWays()
+		self.__IncrementEachField()
 		self.__FloydShortestPaths()
 
 		dict = {
